@@ -10,8 +10,18 @@
 
 <body>
 
-<p th:text="${test}"></p>
-
+<table>
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total Reported Cases</th>
+    </tr>
+    <tr th:each="locationStat : ${locationStats}">
+        <td th:text="${locationStat.getState()}"></td>
+        <td th:text="${locationStat.getCountry()}"></td>
+        <td th:text="${locationStat.getLatestTotalCases()}">0</td>
+    </tr>
+</table>
 </body>
 
 </html>
