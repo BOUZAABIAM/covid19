@@ -5,23 +5,39 @@
 <head>
     <title>CoronaVirus Tracker Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
 <body>
+<div class="container">
+<h1>CoronaVirus Tracker Application</h1>
+<p>This application lists the current number of cases reported across the globe</p>
+<div class="jumbotron">
+    <h1 class="display-4" th:text="${totalReprotedCases}"></h1>
+    <p class="lead">Total cases reported as of today</p>
+    <hr class="my-4">
+    <p>
+        <span>New cases reported since previous day</span>
+        <span th:text="${totalNewCases}"></span>
+    </p>
+</div>
 
-<table>
-    <tr>
-        <th>State</th>
-        <th>Country</th>
-        <th>Total Reported Cases</th>
-    </tr>
-    <tr th:each="locationStat : ${locationStats}">
-        <td th:text="${locationStat.getState()}"></td>
-        <td th:text="${locationStat.getCountry()}"></td>
-        <td th:text="${locationStat.getLatestTotalCases()}">0</td>
-    </tr>
-</table>
+    <table class="table">
+        <tr>
+            <th>State</th>
+            <th>Country</th>
+            <th>Total Reported Cases</th>
+            <th>New Cases</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.getState()}"></td>
+            <td th:text="${locationStat.getCountry()}"></td>
+            <td th:text="${locationStat.getLatestTotalCases()}">0</td>
+            <td th:text="${locationStat.getDiffFromPrevDay()}">0</td>
+        </tr>
+    </table>
+</div>
 </body>
 
 </html>
